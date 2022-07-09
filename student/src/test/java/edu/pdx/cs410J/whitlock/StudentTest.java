@@ -2,7 +2,6 @@ package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.whitlock.Student.MissingCommandLineArguments;
 import edu.pdx.cs410J.whitlock.Student.UnrecognizedGenderException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -154,5 +153,23 @@ public class StudentTest
   void toStringContainsOneClass() throws UnrecognizedGenderException, MissingCommandLineArguments {
     Student student = createStudentFrom("Name", "male", "3.45", "Java");
     assertThat(student.toString(), containsString("and is taking 1 class: Java."));
+  }
+
+  @Test
+  void toStringContainsTwoClasses() throws UnrecognizedGenderException, MissingCommandLineArguments {
+    Student student = createStudentFrom("Name", "male", "3.45", "Java", "Compilers");
+    assertThat(student.toString(), containsString("and is taking 2 classes: Java and Compilers."));
+  }
+
+  @Test
+  void toStringContainsThreeClasses() throws UnrecognizedGenderException, MissingCommandLineArguments {
+    Student student = createStudentFrom("Name", "male", "3.45", "Java", "Compilers", "AI");
+    assertThat(student.toString(), containsString("and is taking 3 classes: Java, Compilers, and AI."));
+  }
+
+  @Test
+  void toStringContainsFourClasses() throws UnrecognizedGenderException, MissingCommandLineArguments {
+    Student student = createStudentFrom("Name", "male", "3.45", "Java", "Compilers", "Android", "AI");
+    assertThat(student.toString(), containsString("and is taking 4 classes: Java, Compilers, Android, and AI."));
   }
 }

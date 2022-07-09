@@ -61,7 +61,25 @@ public class Student extends Human {
     }
     if (numClasses > 0) {
       sb.append(": ");
-      this.classes.forEach(sb::append);
+    }
+    if (numClasses == 1) {
+      sb.append(this.classes.get(0));
+
+    } else if (numClasses == 2) {
+      sb.append(this.classes.get(0));
+      sb.append(" and ");
+      sb.append(this.classes.get(1));
+
+    } else if (numClasses > 2) {
+      for (int i = 0; i < numClasses; i++) {
+        sb.append(this.classes.get(i));
+        if (i <= numClasses - 2) {
+          sb.append(", ");
+        }
+        if (i == numClasses - 2) {
+          sb.append("and ");
+        }
+      }
     }
     sb.append(".");
     return sb.toString();

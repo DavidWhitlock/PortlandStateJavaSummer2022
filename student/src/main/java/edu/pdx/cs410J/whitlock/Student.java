@@ -4,7 +4,9 @@ import com.google.common.annotations.VisibleForTesting;
 import edu.pdx.cs410J.lang.Human;
 
 import java.util.ArrayList;
-                                                                                    
+import java.util.Arrays;
+import java.util.List;
+
 /**                                                                                 
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
@@ -12,6 +14,7 @@ public class Student extends Human {
 
   private final Gender gender;
   private final double gpa;
+  private final List<String> classes;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -30,6 +33,7 @@ public class Student extends Human {
     super(name);
     this.gender = gender;
     this.gpa = gpa;
+    this.classes = classes;
   }
 
   /**                                                                               
@@ -45,7 +49,11 @@ public class Student extends Human {
    * <code>Student</code>.                                                          
    */                                                                               
   public String toString() {
-    return getName() + " has a GPA of " + this.gpa;
+    return getName() + " has a GPA of " + this.gpa + " and is taking " + getClassesDescription();
+  }
+
+  private String getClassesDescription() {
+    return this.classes.size() + " classes.";
   }
 
   /**
@@ -80,7 +88,8 @@ public class Student extends Human {
       Gender gender = validateGender(args[1]);
       double gpa = Double.parseDouble(args[2]);
 
-      return new Student(name, new ArrayList<>(), gpa, gender);
+      ArrayList<String> classes = new ArrayList<>(Arrays.asList(args).subList(3, args.length));
+      return new Student(name, classes, gpa, gender);
     }
   }
 

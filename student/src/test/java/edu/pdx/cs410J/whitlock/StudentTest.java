@@ -2,6 +2,7 @@ package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.whitlock.Student.MissingCommandLineArguments;
 import edu.pdx.cs410J.whitlock.Student.UnrecognizedGenderException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -141,5 +142,18 @@ public class StudentTest
     String gpa = "3.64";
     Student student = createStudentFrom("Name", "male", gpa);
     assertThat(student.toString(), containsString("has a GPA of " + gpa));
+  }
+
+  @Test
+  void toStringContainsZeroClasses() throws UnrecognizedGenderException, MissingCommandLineArguments {
+    Student student = createStudentFrom("Name", "male", "3.45");
+    assertThat(student.toString(), containsString("and is taking 0 classes."));
+  }
+
+  @Test
+  @Disabled
+  void toStringContainsOneClass() throws UnrecognizedGenderException, MissingCommandLineArguments {
+    Student student = createStudentFrom("Name", "male", "3.45", "Java");
+    assertThat(student.toString(), containsString("and is taking 1 class: Java."));
   }
 }

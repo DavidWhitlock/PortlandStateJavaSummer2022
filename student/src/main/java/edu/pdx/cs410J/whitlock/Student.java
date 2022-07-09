@@ -53,7 +53,18 @@ public class Student extends Human {
   }
 
   private String getClassesDescription() {
-    return this.classes.size() + " classes.";
+    int numClasses = this.classes.size();
+    StringBuilder sb = new StringBuilder().append(numClasses).append(" class");
+
+    if (numClasses != 1) {
+      sb.append("es");
+    }
+    if (numClasses > 0) {
+      sb.append(": ");
+      this.classes.forEach(sb::append);
+    }
+    sb.append(".");
+    return sb.toString();
   }
 
   /**

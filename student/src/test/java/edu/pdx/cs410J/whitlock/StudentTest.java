@@ -151,7 +151,6 @@ public class StudentTest
   }
 
   @Test
-  @Disabled
   void toStringContainsOneClass() throws UnrecognizedGenderException, MissingCommandLineArguments {
     Student student = createStudentFrom("Name", "male", "3.45", "Java");
     assertThat(student.toString(), containsString("and is taking 1 class: Java."));

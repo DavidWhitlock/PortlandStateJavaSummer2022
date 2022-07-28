@@ -72,4 +72,26 @@ class PhoneBillServletTest {
     assertThat(servlet.getDefinition(word), equalTo(definition));
   }
 
+  @Test
+  void creatingDefinitionWithMissingParameterResultsInPreconditionFailed() throws IOException {
+    PhoneBillServlet servlet = new PhoneBillServlet();
+
+    HttpServletRequest request = mock(HttpServletRequest.class);
+
+    HttpServletResponse response = mock(HttpServletResponse.class);
+
+    // Use a StringWriter to gather the text from multiple calls to println()
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter pw = new PrintWriter(stringWriter, true);
+
+    when(response.getWriter()).thenReturn(pw);
+
+    servlet.doPost(request, response);
+
+    ArgumentCaptor<Integer> statusCode = ArgumentCaptor.forClass(Integer.class);
+    ArgumentCaptor<String> message = ArgumentCaptor.forClass(String.class);
+    verify(response).sendError(statusCode.capture(), message.capture());
+
+    assertThat(message.getValue(), equalTo(Messages.missingRequiredParameter(WORD_PARAMETER)));
+  }
 }

@@ -2,4 +2,6 @@
     <string name="app_name">Phone Bill</string>
     <string name="hello">Hello again Advanced Programming with Java!</string>
     <string name="launch_calculator">Launch Calculator</string>
+    <string name="plus">+</string>
+    <string name="equals">=</string>
 </resources>

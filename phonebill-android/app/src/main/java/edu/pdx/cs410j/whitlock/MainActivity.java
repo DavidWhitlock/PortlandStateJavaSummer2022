@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         sums = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(sums);
+
+        listView.setOnItemClickListener((adapterView, view, index, l) -> {
+            Integer sum = (Integer) adapterView.getItemAtPosition(index);
+            Toast.makeText(MainActivity.this, "Clicked on " + sum, Toast.LENGTH_LONG).show();
+        });
     }
 
     public void launchCalculator(View view) {

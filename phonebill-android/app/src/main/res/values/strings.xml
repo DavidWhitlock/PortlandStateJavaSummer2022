@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Phone Bill</string>
     <string name="hello">Hello again Advanced Programming with Java!</string>
-    <string name="click_me">Click Me</string>
+    <string name="launch_calculator">Launch Calculator</string>
 </resources>
